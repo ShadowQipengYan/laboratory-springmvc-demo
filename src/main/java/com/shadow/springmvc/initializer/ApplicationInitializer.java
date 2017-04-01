@@ -13,7 +13,8 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
     }
 
     /**
-     * 1、     * @return
+     * 1
+     * @return
      */
     @Override
     protected Class<?>[] getServletConfigClasses() {
