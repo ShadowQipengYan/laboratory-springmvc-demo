@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.shadow.springmvc.initializer")
+@ComponentScan("com.shadow.springmvc")
 public class WebConfig extends WebMvcConfigurerAdapter      {
 
     /**
@@ -24,7 +24,7 @@ public class WebConfig extends WebMvcConfigurerAdapter      {
     @Bean
     public ViewResolver viewResolver(){
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/views");
+        viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
         viewResolver.setExposePathVariables(true);//默认是true
         return viewResolver;
