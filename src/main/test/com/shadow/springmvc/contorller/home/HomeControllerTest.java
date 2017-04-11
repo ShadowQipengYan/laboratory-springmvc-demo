@@ -2,8 +2,6 @@ package com.shadow.springmvc.contorller.home;
 
 import com.shadow.springmvc.controller.home.HomeController;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -14,7 +12,6 @@ import java.net.URI;
 /**
  * Created by shadow on 17/4/9.
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
 public class HomeControllerTest {
 
     @Test
