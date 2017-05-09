@@ -5,7 +5,6 @@ package com.shadow.design.account;
  */
 public class TencentAccountServiceImpl extends AbstractAccountService<TencentAccount>{
 
-
     @Override
     public TencentAccount getBabyAccount() {
         return null;

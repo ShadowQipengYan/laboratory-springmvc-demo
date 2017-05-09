@@ -5,13 +5,13 @@ package com.shadow.design.account;
  */
 public class Test {
 
+    static AccountServiceStrategy strategy = new AccountServiceStrategy();
+
     public static void main(String[] args) {
-        TencentAccountServiceImpl tencentAccountService = new TencentAccountServiceImpl();
-
-        TencentAccount tencentAccount = tencentAccountService.createBabyAccount("account1");
-        System.out.println(tencentAccount.getAccount());
-
-        tencentAccount = tencentAccountService.createBabyAccount("account2","");
-        System.out.println(tencentAccount.getAccount());
+        IAccountService<TencentAccount> accountService = strategy.get("type");
+        TencentAccount student = accountService.createBabyAccount("student1");
+        System.out.println(student.getAccount());
+        student = accountService.createBabyAccount("student2");
+        System.out.println(student.getAccount());
     }
 }
