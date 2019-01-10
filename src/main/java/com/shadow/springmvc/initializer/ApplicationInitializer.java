@@ -9,7 +9,7 @@ import javax.servlet.ServletRegistration;
 /**
  * Created by yanqp on 2017/3/31.
  */
-public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -18,11 +18,12 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
     /**
      * 1/test
+     *
      * @return
      */
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{  WebConfig.class };
+        return new Class<?>[]{WebConfig.class};
     }
 
     @Override
@@ -39,6 +40,6 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {
         //设置上传文件临时存储位置
         registration.setMultipartConfig(new MultipartConfigElement("/temp/springmvc/uploads",
-                2097152,4194304,0));
+                2097152, 4194304, 0));
     }
 }

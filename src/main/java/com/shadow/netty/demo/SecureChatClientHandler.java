@@ -15,8 +15,6 @@
  */
 package com.shadow.netty.demo;
 
-import java.awt.List;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
@@ -27,16 +25,16 @@ public class SecureChatClientHandler extends SimpleChannelInboundHandler<String>
 
     @Override
     public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-    		
-    		//String msg2=processMsg(msg);
-    		
-    		ChatClient.cList.add("\r\n"+msg,-1);
-    		System.err.println(msg);
-    		
-    	
+
+        //String msg2=processMsg(msg);
+
+        ChatClient.cList.add("\r\n" + msg, -1);
+        System.err.println(msg);
+
+
     }
 
-//    public String processMsg(String msg){	//´¦ÀíÏûÏ¢£¬¿ÉÒÔ¾Ý´Ë¶¨Òå×Ô¼ºµÄ¹æÔò
+//    public String processMsg(String msg){	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾Ý´Ë¶ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½
 //    	//System.out.println("msg is "+msg);
 //    	String  str1=msg.replace("[", "");
 //    	System.out.println("str is -->"+str1);
@@ -45,11 +43,11 @@ public class SecureChatClientHandler extends SimpleChannelInboundHandler<String>
 //    	
 //    	if(strArr.length>1&&strArr[0].equals(ChatClient.getName())){
 //    		System.out.println("process name is -->"+strArr[1]);
-//    		return "[ÎÒ]"+strArr[1];
+//    		return "[ï¿½ï¿½]"+strArr[1];
 //    	}
 //    	else return msg;
 //    }
-    
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();

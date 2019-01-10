@@ -20,7 +20,7 @@ public class VariableController {
 
     @RequestMapping(value = "/variable/{resource}")
     @ResponseBody
-    public Object variable(@PathVariable("resource") String resource){
+    public Object variable(@PathVariable("resource") String resource) {
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("resource", resource);
         return result;

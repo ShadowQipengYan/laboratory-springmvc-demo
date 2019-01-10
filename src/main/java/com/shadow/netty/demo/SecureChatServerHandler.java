@@ -35,13 +35,13 @@ public class SecureChatServerHandler extends SimpleChannelInboundHandler<String>
     static final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     @Override
-    public void channelActive(final ChannelHandlerContext ctx) {//¿Í»§¶ËÆô¶¯Ê±µ÷ÓÃ¸Ã·½·¨
-    	
+    public void channelActive(final ChannelHandlerContext ctx) {//ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ã¸Ã·ï¿½ï¿½ï¿½
+
 //    	System.out.println("channelactive!");
-    	
+
         // Once session is secured, send a greeting and register the channel to the global channel
         // list so the channel received the messages from others.
-    	//Éú³ÉÏµÍ³ÏûÏ¢
+        //ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ï¢
         ctx.pipeline().get(SslHandler.class).handshakeFuture().addListener(
                 new GenericFutureListener<Future<Channel>>() {
                     @Override
@@ -55,45 +55,45 @@ public class SecureChatServerHandler extends SimpleChannelInboundHandler<String>
 
                         channels.add(ctx.channel());
                     }
-        });
+                });
     }
-    
+
     @Override
-    public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {//Ã¿´Î·¢ËÍÏûÏ¢Ê± µ÷ÓÃ¸Ã·½·¨
+    public void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {//Ã¿ï¿½Î·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Ê± ï¿½ï¿½ï¿½Ã¸Ã·ï¿½ï¿½ï¿½
         // Send the received message to all channels but the current one.
-    	boolean boo=false;
+        boolean boo = false;
 //    	System.out.println("channelread0!");
-    	String [] strArr=null;
-    	if(msg.startsWith("[")){//Çø·ÖÊÇÏµÍ³Éú³ÉµÄÏûÏ¢»¹ÊÇÓÃ»§·¢ËÍµÄÏûÏ¢
-    		boo=true;
-    		strArr=processMsg(msg);
-    	}
-        for (Channel c: channels) {		//¶ÔÍ¨µÀÖÐµÄÏûÏ¢½øÐÐ±éÀú
-            if (c != ctx.channel()) {	//·¢ËÍ¸øÆäËûÓÃ»§
-            	if(boo==true)			//ÓÐêÇ³ÆµÄÇé¿ö
-            	c.writeAndFlush( msg + '\n');	
-            	else c.writeAndFlush("[" + ctx.channel().remoteAddress() + "] " + msg + '\n');//Ã»ÓÐêÇ³Æ
-            } else {					//·¢ËÍ¸ø¸ÃÓÃ»§
-            	if(boo==true){			//ÓÐêÇ³ÆµÄÇé¿ö
-            		c.writeAndFlush("[ÎÒ] " + strArr[2] + '\n');
-            	}else {					//Ã»ÓÐêÇ³Æ
-            		c.writeAndFlush(msg + '\n');
-				}
+        String[] strArr = null;
+        if (msg.startsWith("[")) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ï¢
+            boo = true;
+            strArr = processMsg(msg);
+        }
+        for (Channel c : channels) {        //ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½
+            if (c != ctx.channel()) {    //ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+                if (boo == true)            //ï¿½ï¿½ï¿½Ç³Æµï¿½ï¿½ï¿½ï¿½
+                    c.writeAndFlush(msg + '\n');
+                else c.writeAndFlush("[" + ctx.channel().remoteAddress() + "] " + msg + '\n');//Ã»ï¿½ï¿½ï¿½Ç³ï¿½
+            } else {                    //ï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
+                if (boo == true) {            //ï¿½ï¿½ï¿½Ç³Æµï¿½ï¿½ï¿½ï¿½
+                    c.writeAndFlush("[ï¿½ï¿½] " + strArr[2] + '\n');
+                } else {                    //Ã»ï¿½ï¿½ï¿½Ç³ï¿½
+                    c.writeAndFlush(msg + '\n');
+                }
             }
         }
-        
+
         // Close the connection if the client has sent 'bye'.
         if ("bye".equals(msg.toLowerCase())) {
             ctx.close();
         }
     }
 
-    public String[] processMsg(String msg){
-    	String [] strArr=msg.split("\\[|\\]");//·µ»ØÓÉ[¡¢]·Ö¸îµÄ×Ö·û´®£¬ÊÇ½âÊÍÐ­ÒéµÄ¹ý³Ì
-    	
-    	return strArr;
+    public String[] processMsg(String msg) {
+        String[] strArr = msg.split("\\[|\\]");//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½]ï¿½Ö¸ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½
+
+        return strArr;
     }
-    
+
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         cause.printStackTrace();

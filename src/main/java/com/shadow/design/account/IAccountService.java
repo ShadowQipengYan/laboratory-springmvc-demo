@@ -3,7 +3,8 @@ package com.shadow.design.account;
 /**
  * Created by shadow on 17/5/8.
  */
-public interface IAccountService <T>{
+public interface IAccountService<T> {
     T createBabyAccount(String studentId);
+
     T getBabyAccount();
 }

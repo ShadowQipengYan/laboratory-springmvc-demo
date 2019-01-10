@@ -19,14 +19,15 @@ import java.io.IOException;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.shadow.springmvc")
-public class WebConfig extends WebMvcConfigurerAdapter      {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     /**
      * 配置jsp视图解析器
+     *
      * @return
      */
     @Bean
-    public ViewResolver viewResolver(){
+    public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".jsp");
@@ -35,7 +36,7 @@ public class WebConfig extends WebMvcConfigurerAdapter      {
     }
 
     @Bean
-    public MultipartResolver multipartResolver() throws IOException{
+    public MultipartResolver multipartResolver() throws IOException {
         return new StandardServletMultipartResolver();
     }
 

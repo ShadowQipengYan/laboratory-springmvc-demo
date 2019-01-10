@@ -16,7 +16,7 @@ public class EasemobAccountServiceImpl extends AbstractAccountService<EasemobAcc
 
     @Override
     public EasemobAccount createBabyAccount(String studentId) {
-         return createBabyAccount(studentId+"custom", "");
+        return createBabyAccount(studentId + "custom", "");
     }
 
     @Override

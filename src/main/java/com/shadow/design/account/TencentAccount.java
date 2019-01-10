@@ -7,7 +7,7 @@ public class TencentAccount {
 
     private String account;
 
-    public TencentAccount(String account){
+    public TencentAccount(String account) {
         this.account = account;
     }
 

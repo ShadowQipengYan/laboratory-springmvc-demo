@@ -13,11 +13,12 @@ public class ViewController {
 
     /**
      * 返回页面
+     *
      * @param model
      * @return
      */
     @RequestMapping(value = "/view")
-    public String view(Model model){
+    public String view(Model model) {
         model.addAttribute("key", "Attribute View");
         return "view";
     }

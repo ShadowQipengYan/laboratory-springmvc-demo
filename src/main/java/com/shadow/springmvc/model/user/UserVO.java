@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 
 /**
  * Spring 对 Java validation API支持
- *
+ * <p>
  * Created by shadow on 17/4/12.
  */
 public class UserVO {

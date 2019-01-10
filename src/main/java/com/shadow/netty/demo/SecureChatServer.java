@@ -19,40 +19,41 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-//import io.netty.example.telnet.TelnetServer;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 
+//import io.netty.example.telnet.TelnetServer;
+
 /**
  * Simple SSL chat server modified from
- *
  */
 public final class SecureChatServer {
 
-    static final int PORT = Integer.parseInt(System.getProperty("port", "8992")); 
+    static final int PORT = Integer.parseInt(System.getProperty("port", "8992"));
+
     public static void main(String[] args) throws Exception {
-    	//SelfSignedCertificateÊÇÒ»¸öÓÃÓÚ¹ÜÀí¿ÉÐÅÏûÏ¢µÄ¹¤³§¹ÜÀíÕß
+        //SelfSignedCertificateï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         SelfSignedCertificate ssc = new SelfSignedCertificate();
-        	//¹¤³§£»ÊÚÈ¨ºÍ·¢¸øË½Ô¿
-        SslContext sslCtx = SslContext.newServerContext(ssc.certificate(), ssc.privateKey());       
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¨ï¿½Í·ï¿½ï¿½ï¿½Ë½Ô¿
+        SslContext sslCtx = SslContext.newServerContext(ssc.certificate(), ssc.privateKey());
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
-            ServerBootstrap b = new ServerBootstrap();//·þÎñÒýµ¼³ÌÐò£¬·þÎñÆ÷¶Ë¿ìËÙÆô¶¯³ÌÐò
+            ServerBootstrap b = new ServerBootstrap();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò£¬·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             b.group(bossGroup, workerGroup)
-             .channel(NioServerSocketChannel.class)
-             .handler(new LoggingHandler(LogLevel.INFO))
-             .childHandler(new SecureChatServerInitializer(sslCtx));
+                    .channel(NioServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.INFO))
+                    .childHandler(new SecureChatServerInitializer(sslCtx));
 
             b.bind(PORT).sync().channel().closeFuture().sync();
-            	//bind°ó¶¨¶Ë¿Ú£¬´´½¨Ò»¸öchannnel
-            	//sync¼àÌýfuture Ö±µ½futureÏûÏ¢ËÍ´ï£¬·µ»Øfuture
-            	//channel µ±futureºÍioÏûÏ¢²úÉúÁªÏµÊ±·µ»ØÒ»¸öchannel¡£
-            	//closefuture µ±ÒÔÉÏµÄÏûÏ¢½ÓÊÜÍê±ÏºóÖØÐÂ»ñÈ¡future
-            	//ÒÔÉÏÏàµ±ÓÚÒ»¸öÑ­»·£¿£¿£¿£¿
-            
+            //bindï¿½ó¶¨¶Ë¿Ú£ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½channnel
+            //syncï¿½ï¿½ï¿½ï¿½future Ö±ï¿½ï¿½futureï¿½ï¿½Ï¢ï¿½Í´ï£¬ï¿½ï¿½ï¿½ï¿½future
+            //channel ï¿½ï¿½futureï¿½ï¿½ioï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÊ±ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½channelï¿½ï¿½
+            //closefuture ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½ï¿½Â»ï¿½È¡future
+            //ï¿½ï¿½ï¿½ï¿½ï¿½àµ±ï¿½ï¿½Ò»ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
         } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

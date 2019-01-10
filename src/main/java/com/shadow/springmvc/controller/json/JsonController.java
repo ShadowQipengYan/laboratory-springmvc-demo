@@ -19,11 +19,11 @@ public class JsonController {
      */
     @RequestMapping(value = "json")
     @ResponseBody
-    public Object returnJson(){
-        Map<String, Object> result = new HashMap<String,Object>();
+    public Object returnJson() {
+        Map<String, Object> result = new HashMap<String, Object>();
         result.put("name", "jack");
         result.put("age", 18);
-        return  result;
+        return result;
     }
 
 }
