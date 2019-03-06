@@ -9,6 +9,6 @@ import lombok.Data;
 @Data
 public class TaskFeatures {
     private String paramsJson;
-    private String paramClassType;
+    private String paramsClassType;
     private String paramsRemark;
 }

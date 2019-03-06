@@ -22,7 +22,7 @@ public class TaskProvider implements IProvider<TaskProviderMessage<TaskPool>> {
         TaskFeatures taskFeatures = new TaskFeatures();
         taskFeatures.setParamsJson(JSONMapper.json(params));
         taskFeatures.setParamsRemark("");
-        taskFeatures.setParamClassType(params.getClass().getTypeName());
+        taskFeatures.setParamsClassType(params.getClass().getTypeName());
 
         TaskPool taskPool = new TaskPool();
         taskPool.setCreateUid(message.getCreateUid());

@@ -18,11 +18,11 @@ public class MainTest {
         TaskFeatures taskFeatures = new TaskFeatures();
         taskFeatures.setParamsJson(JSONMapper.json(testBean));
         taskFeatures.setParamsRemark("");
-        taskFeatures.setParamClassType(testBean.getClass().getTypeName());
+        taskFeatures.setParamsClassType(testBean.getClass().getTypeName());
 
         Class<?> paramClass = null;
         try {
-            paramClass = Class.forName(taskFeatures.getParamClassType());
+            paramClass = Class.forName(taskFeatures.getParamsClassType());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -30,7 +30,9 @@ public class MainTest {
             throw new RuntimeException("参数类型转化错误");
         }
         Object binding = JSONMapper.binding(taskFeatures.getParamsJson(), paramClass);
-
+        TestBean testBean2 = (TestBean) binding;
+        System.out.println(testBean2.getBeanId());
+        System.out.println(testBean2.getBeanName());
 
     }
 }

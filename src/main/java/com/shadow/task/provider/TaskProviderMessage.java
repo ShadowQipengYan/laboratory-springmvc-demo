@@ -11,4 +11,5 @@ public class TaskProviderMessage<T> {
     private String createUid;
     private Byte taskType;
     private T params;
+    private String paramsRemark;
 }
